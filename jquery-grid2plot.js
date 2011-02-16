@@ -26,6 +26,7 @@
                 }
 		        data.push(item);
    			}
+            data = [data];
         // Multi Line (With Labels)
 		} else {
 			var rows = grid['rows'];
