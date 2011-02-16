@@ -15,7 +15,7 @@
 		}
 
         var data;
-        // Easyest case
+        // One Line
 		if (2 == gridSize) {
 		    var data = [];
 			var rows = grid['rows'];
@@ -26,9 +26,23 @@
                 }
 		        data.push(item);
    			}
+        // Multi Line (With Labels)
+		} else {
+			var rows = grid['rows'];
+			var data = [];
+			var p = 0;
+			for (var key in rows[0]) {
+				var label = grid['head'][p++];
+                var list = _.map(rows, 
+					function(row){
+						return [row['date'], row[key]];
+					}, key);
+                data.push({'label': label, 'data': list});
+			}
 		}
+
         if (data) {
-            $.plot(options.chart, [data]);
+            $.plot(options.chart, data);
         }
 
 	    return this;
